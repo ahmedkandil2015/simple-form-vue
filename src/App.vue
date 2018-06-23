@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form>
+        <form v-if="!issubmited">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <h1>File a Complaint</h1>
@@ -106,13 +106,14 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <button
-                            class="btn btn-primary">Submit!
+                            class="btn btn-primary" 
+                            @click.prevent="submited">Submit!
                     </button>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="row">
+        <div class="row" v-if="issubmited">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -153,7 +154,13 @@ export default {
       priorities: ["High", "Medium", "Low"],
       priorityitem: "High",
       dataSwitch:true,
+      issubmited:false,
     };
+  },
+  methods:{
+      submited(){
+          this.issubmited=true;
+      }
   },
   components: {
     appSwitch: Switch
